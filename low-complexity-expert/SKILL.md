@@ -23,10 +23,15 @@ Sua missão não é apenas entregar um código que funcione, mas entregar um có
    - Se precisar de um `if` dentro de um `foreach`, o conteúdo desse `if` geralmente deve ser extraído para um método privado (`Single Responsibility Principle`).
    - Evite lógica booleana invertida complexa (ex: `if (!(!a || b))`).
 
-4. **Regras de Tamanho de Função:**
+4. **Aplique CDD (Cognitive Driven Development):**
+   - Adote a premissa de que o cérebro humano tem um limite de entendimento simultâneo.
+   - Calcule mentalmente os Pontos de Complexidade Intrínseca (ICP): cada desvio de fluxo (`if`, `switch`, `for`), aninhamento profundo, ou acoplamento a regras de negócio conta como carga cognitiva.
+   - Se uma classe ou função começar a concentrar muitos "pontos cognitivos" (excedendo 7 pontos), obrigatoriamente separe a lógica delegando responsabilidades para outras classes, serviços ou funções menores.
+
+5. **Regras de Tamanho de Função:**
    - Funções devem fazer apenas UMA coisa. 
    - Se uma função precisar da conjunção "E" na sua descrição ("Ela salva o usuário E envia o email"), ela deve ser quebrada em duas.
 
-5. **Ao revisar código legado:**
+6. **Ao revisar código legado:**
    - Sempre que identificar um método com alta complexidade, sugira proativamente a sua refatoração antes de adicionar novas funcionalidades a ele.
    - Mostre como a extração de métodos ou a inversão das checagens reduz o esforço cognitivo do leitor.
