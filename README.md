@@ -73,6 +73,11 @@ Detecta se o projeto já tem ferramental de métricas, instala o que falta, exec
 
 > Par com a skill nº 1: `complexity-audit` **mede** e ranqueia a dívida; `low-complexity-expert` **corrige**. Os limites são os mesmos nas duas (ciclomática ≤ 5, cognitiva/ICP ≤ 7, aninhamento ≤ 2).
 
+### 5. [Gauntlet Loop](./gauntlet-loop/SKILL.md)
+Ciclo de verificação **adversarial** para agentes: encadeia typecheck → testes → estática → complexidade → cobertura do diff → **teste de mutação** (`Infection` no PHP, `Stryker` no TypeScript) num loop com orçamento de iterações, detecção de estagnação e **guardrails anti-fraude**. Existe porque um agente que escreve o código e os testes tem incentivo a produzir teste que passa sem asserir nada — mutação é a única métrica que mede a qualidade da asserção. Dois anéis (rápido a cada edição, completo antes de declarar pronto), relatório visual mutante por mutante e feedback estruturado em `result.json`.
+
+> **As três skills de qualidade formam um ciclo:** `gauntlet-loop` **verifica** se o trabalho se sustenta sob ataque · `complexity-audit` **mede** a dívida · `low-complexity-expert` **corrige**. Nenhuma reimplementa a outra.
+
 ---
 
 ## ✅ Padrão de qualidade das skills
