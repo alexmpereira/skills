@@ -68,6 +68,11 @@ Faz o agente explicar qualquer assunto em **quatro camadas progressivas** — in
 
 > As duas skills financeiras se complementam: `didactic-teacher` explica **para você entender**; `financial-specialist` escreve **para o usuário final do seu produto**.
 
+### 4. [Auditoria de Complexidade](./complexity-audit/SKILL.md)
+Detecta se o projeto já tem ferramental de métricas, instala o que falta, executa a medição e gera relatório unificado de complexidade **ciclomática e cognitiva** com ranking de ofensores e plano de baseline. Cobre **PHP** (phpmd, phpcs, PhpMetrics, PHPStan + `tomasvotruba/cognitive-complexity`) e **TypeScript** (ESLint, typescript-eslint, `eslint-plugin-sonarjs`, jscpd). Princípio: **medir sem invadir** — toda configuração da medição vive em `build/complexity/`, sem tocar no lint do projeto.
+
+> Par com a skill nº 1: `complexity-audit` **mede** e ranqueia a dívida; `low-complexity-expert` **corrige**. Os limites são os mesmos nas duas (ciclomática ≤ 5, cognitiva/ICP ≤ 7, aninhamento ≤ 2).
+
 ---
 
 ## ✅ Padrão de qualidade das skills
