@@ -78,6 +78,20 @@ Ciclo de verificação **adversarial** para agentes: encadeia typecheck → test
 
 > **As três skills de qualidade formam um ciclo:** `gauntlet-loop` **verifica** se o trabalho se sustenta sob ataque · `complexity-audit` **mede** a dívida · `low-complexity-expert` **corrige**. Nenhuma reimplementa a outra.
 
+### 6. [Desenvolvedor Sênior](./senior-developer/SKILL.md)
+Ponto de entrada para **qualquer novo desenvolvimento** — feature nova ou correção de bug. Faz reconhecimento do projeto antes de escrever (cita o arquivo de referência cujo padrão está seguindo), define o contrato da mudança, implementa a **menor solução que resolve** e recusa overengineering com um orçamento mensurável: 0 dependências novas, 0 camadas novas, interface só com 2 implementações reais, abstração só na 3ª repetição. Traz catálogo *tentação → alternativa mínima*, modo específico para bugfix (reproduzir → causa raiz → diff mínimo) e uma **linha de custo** obrigatória na entrega. Orquestra as demais skills nas fases de teste, complexidade e verificação.
+
+### 7. [Estrategista de TDD](./tdd-strategist/SKILL.md)
+Conduz o ciclo vermelho-verde-refatora e, principalmente, decide **o que merece teste**. Existe para matar a cobertura mentirosa: todo teste precisa nomear a **sabotagem** que ele pega, e passa pelo teste da sabotagem (troca `>` por `>=`, inverte condição, retorna valor fixo) antes de ser aceito. Traz matriz de triagem por risco, catálogo de 13 anti-padrões de teste inútil (tautológico, espelho da implementação, over-mock, getter, snapshot gigante), regra das três fronteiras por limite numérico, regra única de dublês ("mocke só o que você não controla") e a seção obrigatória **"Não testado de propósito"**.
+
+### 8. [Diário de Aprendizado do Projeto](./project-diary/SKILL.md)
+Mantém um diário versionado (`docs/DIARIO.md`) para que armadilha, decisão com trade-off, beco sem saída e correção do usuário não sejam redescobertos a cada tarefa. A regra que o faz pagar é a inversa da usual: **consultar é obrigatório, registrar é excepcional** — a `senior-developer` lê o diário na fase de reconhecimento e declara qual entrada aplicou. Duas travas contra o apodrecimento: toda entrada declara **`Vence quando:`**, e regra vista pela terceira vez é **promovida para o `CLAUDE.md`/`CONTRIBUTING.md` e apagada** do diário. Gatilhos estritos, entrada de no máximo 12 linhas, zero narrativa de tarefa (isso o `git log` já faz).
+
+### 9. [Criação de Projeto (Docker-first)](./project-scaffold/SKILL.md)
+Cria projeto novo com stack padronizada — **Laravel** para PHP, **NestJS** para API em TypeScript, **Next.js** para frontend — e execução 100% em Docker: o projeto é gerado de dentro de container, sem nenhum runtime instalado no host. Entrega Dockerfile multi-stage, compose com healthcheck e `service_healthy`, `.dockerignore`, `.env.example`, README e comandos de rotina. Nunca fixa versão de memória (descobre pelo gerador oficial e registra a resolvida) e só declara pronto depois de provar `down -v` + `up` do zero, com a suíte verde dentro do container. Traz também a lista explícita do que **não** entra no esqueleto: CI, Kubernetes, multi-ambiente, CRUD de exemplo, pastas de camada vazias.
+
+> **Fluxo completo de uma tarefa:** `project-scaffold` cria o projeto (uma vez) → `senior-developer` consulta o diário, reconhece o padrão e fecha o contrato → `tdd-strategist` escreve o teste vermelho → `senior-developer` implementa o mínimo que fica verde → `low-complexity-expert` corrige se estourar o orçamento de complexidade → `gauntlet-loop` verifica sob ataque → `project-diary` registra o que não pode ser redescoberto. A `complexity-audit` entra fora do fluxo, quando o pedido é diagnóstico e não entrega.
+
 ---
 
 ## ✅ Padrão de qualidade das skills
